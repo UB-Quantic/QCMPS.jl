@@ -1,0 +1,8 @@
+name = "QCMPS"
+uuid = "084c1ca4-5b6d-4b84-bc26-0ce73dab716f"
+authors = ["Sergio Sánchez Ramírez <sergio.sanchez.ramirez@bsc.es>"]
+version = "0.1.0"
+
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+TensorOperations = "6aa20fa7-93e2-5fca-9bc0-fbd0db3c71a2"
