@@ -7,8 +7,11 @@ struct MPS
     A::Vector{Array{Complex{AbstractFloat},3}}
 end
 
-# TODO how do yo initialize an MPS to |0..0⟩?
-MPS(n::Integer,χ::Integer) = MPS(χ, [complex(rand(χ, χ, 2)) for _ in 1:n])
+function MPS(n::Integer, χ::Integer)
+    A = zeros(Complex, χ, χ, 2)
+    A[1,1,1] = 1
+    MPS(χ, [copy(A) for _ in 1:n])
+end
 
 apply!(ψ::MPS, U::Array{N,2}, target::Integer) where N <: Number = @tensor ψ.A[target][i,j,k] := ψ.A[target][i,j,l] * U[l,k]
 
