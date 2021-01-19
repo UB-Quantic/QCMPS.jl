@@ -25,6 +25,7 @@ function apply!(ψ::MPS, U::Array{N,4}, targets::Tuple{Integer,Integer}) where N
     # n,o are physical bonds
     # m is contracted virtual bond
     # k,l are contracted physical bonds
+    @tensor A[i,n,j,o] := A₁[i,m,k] * A₂[m,j,l] * U[l,k,o,n]
 
     # SVD
     dims = (2 * χ, 2 * χ)
