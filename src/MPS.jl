@@ -1,5 +1,6 @@
 using TensorOperations
 using LinearAlgebra
+import Base.*
 
 struct MPS
     χ::Integer
@@ -37,4 +38,19 @@ function apply!(ψ::MPS, U::Array{N,4}, targets::Tuple{Integer,Integer}) where N
     ψ.A[targets[2]] = reshape(V, (χ, χ, 2))
 
     return nothing
+end
+
+
+function *(α::MPS, β::MPS)
+    N = length(α.A)
+    χ = α.χ
+
+    @tensor C[i,j,l,m] := α.A[1][i,j,k] * β.A[1][l,m,k]
+
+    for node in 2:N
+        @tensor C[i,o,l,p] = C[i,j,l,m] * α.A[node][j,o,n] * β.A[node][m,p,n]
+    end
+
+    @tensor D[] := C[i,o,l,p] * C[i,o,l,p]
+    D[1]
 end
