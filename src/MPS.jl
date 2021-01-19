@@ -21,16 +21,18 @@ function apply!(ψ::MPS, U::Array{N,4}, targets::Tuple{Integer,Integer}) where N
     χ = ψ.χ
 
     # Contract MPS nodes and operator
-    @tensor A[i,n,j,o] := A₁[i,m,k] * A₂[m,j,l] * U[k,l,n,o]
-    println("A = ", size(A))
+    # i,j are remaining virtual bond
+    # n,o are physical bonds
+    # m is contracted virtual bond
+    # k,l are contracted physical bonds
 
     # SVD
     dims = (2 * χ, 2 * χ)
     A = reshape(A, dims)
-    println("A = ", size(A))
     U, S, V = svd(A)
 
     # Truncate SVD
+    # SVD generates 2×χ singular values
     S = S[1:χ]
     U = U[:,1:χ]
     V = V[1:χ,:]
