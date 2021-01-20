@@ -63,3 +63,19 @@ function inner(α::MPS, β::MPS)
     @tensor D[] := C[i,o,l,p] * C[i,o,l,p]
     D[1]
 end
+
+×(α::MPS, β::BitVector) = inner(α::MPS, β::BitVector)
+*(α::MPS, β::BitVector) = inner(α::MPS, β::BitVector)
+function inner(ψ::MPS, β::BitVector)
+    χ = ψ.χ
+    A = Matrix(Diagonal(ones(χ)))
+
+    for (index, bit) in enumerate(β)
+        Aux = ψ.A[index][:,:,bit + 1]
+        A = A * Aux
+    end
+
+    tr(A)
+end
+
+fidelity(α::MPS, β) = abs(α × β)
