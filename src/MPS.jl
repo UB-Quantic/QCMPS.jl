@@ -48,7 +48,9 @@ function apply!(ψ::MPS, U::Array{N,4}, targets::Tuple{Integer,Integer}) where N
 end
 
 
-function *(α::MPS, β::MPS)
+×(α::MPS, β::MPS) = inner(α::MPS, β::MPS)
+*(α::MPS, β::MPS) = inner(α::MPS, β::MPS)
+function inner(α::MPS, β::MPS)
     N = length(α.A)
     χ = α.χ
 
