@@ -34,6 +34,7 @@ function apply!(ψ::MPS, U::Array{N,4}, targets::Tuple{Integer,Integer}) where N
 
     # Truncate SVD
     # SVD generates 2×χ singular values
+    f = sum(S[1:χ]) / sum(S)
     S = S[1:χ]
     U = U[:,1:χ]
     V = V[1:χ,:]
@@ -43,7 +44,7 @@ function apply!(ψ::MPS, U::Array{N,4}, targets::Tuple{Integer,Integer}) where N
     @tensor ψ.A[targets[1]][i,j,k] = U[i,l,k] * S[l,j]
     ψ.A[targets[2]] = reshape(V, (χ, χ, 2))
 
-    return nothing
+    return f
 end
 
 
