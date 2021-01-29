@@ -1,8 +1,12 @@
 module QCMPS
 
-include("MPS.jl")
-export MPS
-
 include("Operator.jl")
+export I,X,Y,Z,Rx,Ry,Rz,S,Sᵀ,T,Tᵀ,H,SqrtX
+export C,CX,CY,CZ,CNOT,Swap,SqrtSwap,XX,YY,ZZ
+
+include("MPT.jl")
+
+include("MPS.jl")
+export MPS,LocalMPS
 
 end # module

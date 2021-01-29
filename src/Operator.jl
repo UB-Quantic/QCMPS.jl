@@ -1,6 +1,5 @@
 Operator{F,N} = Array{Complex{F},N} where F <: AbstractFloat
 
-export I,X,Y,Z,Rx,Ry,Rz,S,Sᵀ,T,Tᵀ,H,SqrtX
 I = [1 0; 0 1]
 X = [0 1; 1 0]
 Y = [0 -1im; 1im 0]
@@ -15,7 +14,6 @@ Tᵀ = Rz(- π / 4)
 H = 1 / √2 .* [1 1; 1 -1]
 SqrtX = 1 / 2 .* [1 + 1im 1 - 1im; 1 - 1im 1 + 1im]
 
-export C,CX,CY,CZ,CNOT,Swap,SqrtSwap,XX,YY,ZZ
 C(U) = reshape([
     1 0 0 0;
     0 1 0 0;
