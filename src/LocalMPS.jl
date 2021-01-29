@@ -1,6 +1,6 @@
 struct LocalMPS{F <: AbstractFloat} <: MPS
 	χ::Integer
-    A::Array{MPT{F}}
+    A::Vector{MPT{F}}
 end
 
 LocalMPS(χ,n::Integer) = LocalMPS(Float32, χ, n)
