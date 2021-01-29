@@ -7,6 +7,7 @@ export C,CX,CY,CZ,CNOT,Swap,SqrtSwap,XX,YY,ZZ
 include("MPT.jl")
 
 include("MPS.jl")
-export MPS,LocalMPS
+export MPS,LocalMPS,DistributedMPS
+export apply!,apply_all!
 
 end # module

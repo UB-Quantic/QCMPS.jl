@@ -6,6 +6,7 @@ import Base.*
 abstract type MPS end
 
 include("LocalMPS.jl")
+include("DistributedMPS.jl")
 
 MPS(χ::Integer, n::Integer) = LocalMPS(χ)
 
