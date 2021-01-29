@@ -3,7 +3,7 @@ struct LocalMPS <: MPS
     A::Array{MPS}
 end
 
-LocalMPS(χ,n) = LocalMPS(χ, [MPT(χ) for _ in 1:n])
+LocalMPS(χ,n::Integer) = LocalMPS(Float32, χ, n)
 LocalMPS(::Type{T},χ,n) where T = LocalMPS(χ, [MPT(T, χ) for _ in 1:n])
 
 apply!(ψ::LocalMPS, H::Array{N,2}, target::Integer) where N <: Number = apply!(ψ.A[target], H)
