@@ -54,5 +54,5 @@ fi
 julia $PROJECT -e 'using Pkg; Pkg.build("MPI"; verbose=true)'
 
 if [ "$MPIEXECJL_INSTALL" = true ]; then
-	julia -e "using MPI; MPI.install_mpiexecjl()"
+	julia -e "using MPI; MPI.install_mpiexecjl(force=true)"
 fi
